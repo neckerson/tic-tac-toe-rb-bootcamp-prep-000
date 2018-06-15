@@ -11,10 +11,6 @@ WIN_COMBINATIONS = [
   [6,4,2]
 ]
 
-
-# Define display_board that accepts a board and prints
-# out the current state.
-
 def display_board(board, board_array = [])
   e = 0
   3.times do |i|
@@ -29,7 +25,6 @@ def display_board(board, board_array = [])
   end
 end
 
-# code your #valid_move? method here
 def valid_move?(board, index)
   if index > board.length || index < 0
     false
@@ -42,7 +37,7 @@ def turn(board)
   puts 'Please enter 1-9:'
   input = input_to_index gets.strip
   if valid_move? board, input
-    move(board, input)
+    move(board, input, current_player(board))
     display_board(board)
   else
     puts "invalid"
