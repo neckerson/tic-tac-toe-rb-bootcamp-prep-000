@@ -1,8 +1,3 @@
-# Helper Method
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 # Define your WIN_COMBINATIONS constant
 
 WIN_COMBINATIONS = [
@@ -15,6 +10,26 @@ WIN_COMBINATIONS = [
   [0,4,8],
   [6,4,2]
 ]
+
+# Helper Method
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
+end
+
+def turn_count(board)
+  count = 0
+  board.each do |position|
+    if position == 'X' || position == 'O'
+      count += 1
+    end
+  end
+  return count
+end
+
+def current_player(board)
+  turns = turn_count(board)
+  turns.even? ? "X" : "O"
+end
 
 def won?(board)
   WIN_COMBINATIONS.find do |combo|
