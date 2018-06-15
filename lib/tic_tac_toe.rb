@@ -29,6 +29,15 @@ def display_board(board, board_array = [])
   end
 end
 
+# code your #valid_move? method here
+def valid_move?(board, index)
+  if index > board.length || index < 0
+    false
+  else
+    !position_taken?(board, index)
+  end
+end
+
 # Helper Method
 def position_taken?(board, index)
   !(board[index].nil? || board[index] == " ")
