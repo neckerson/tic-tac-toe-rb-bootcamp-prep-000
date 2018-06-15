@@ -1,5 +1,3 @@
-# Define your WIN_COMBINATIONS constant
-
 WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -25,14 +23,6 @@ def display_board(board, board_array = [])
   end
 end
 
-def valid_move?(board, index)
-  if index > board.length || index < 0
-    false
-  else
-    !position_taken?(board, index)
-  end
-end
-
 def turn(board)
   puts 'Please enter 1-9:'
   input = input_to_index gets.strip
@@ -53,10 +43,6 @@ def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
-end
-
 def turn_count(board)
   count = 0
   board.each do |position|
@@ -70,6 +56,24 @@ end
 def current_player(board)
   turns = turn_count(board)
   turns.even? ? "X" : "O"
+end
+
+def winner(board)
+  if winner = won?(board)
+    board[winner[0]]
+  end
+end
+
+def valid_move?(board, index)
+  if index > board.length || index < 0
+    false
+  else
+    !position_taken?(board, index)
+  end
+end
+
+def position_taken?(board, index)
+  !(board[index].nil? || board[index] == " ")
 end
 
 def won?(board)
@@ -90,10 +94,4 @@ end
 
 def over?(board)
   draw?(board) || won?(board)
-end
-
-def winner(board)
-  if winner = won?(board)
-    board[winner[0]]
-  end
 end
