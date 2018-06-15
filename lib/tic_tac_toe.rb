@@ -23,6 +23,14 @@ def display_board(board, board_array = [])
   end
 end
 
+def play(board)
+  turn_count = 0
+  while turn_count < 9
+    turn(board)
+    turn_count+=1
+  end
+end
+
 def turn(board)
   puts 'Please enter 1-9:'
   input = input_to_index gets.strip
